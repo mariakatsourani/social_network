@@ -2,10 +2,19 @@
 <html>
 	<head>
 		<title><?php echo $pageTitle ?></title>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="views/css/main.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+
+    <?php
+        $user = new UserController();
+        echo "here:";
+        var_dump($db);
+        $user->registerAction($db);
+    ?>
+
+
 		<header>
 			<div id="top">
 				<div id="logo">
@@ -15,7 +24,6 @@
 				<nav>
 					<ul>
 						<li><input type="text" id="search_button"  placeholder=" Search more jokes..."/></li>
-						<li><a href="profile.php">Profile</a></li>
 						<li><a href="dashboard.php">Dashboard</a></li>
 						<li><a href="account.php">Account</a></li>
 						<li><span id="line"></span></li>
