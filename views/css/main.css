@@ -1,0 +1,83 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+*::-webkit-input-placeholder {
+    color: white;
+    opacity: 0.8;
+}
+body{
+	background-color: #ebeff2;
+	font-family: 'Open Sans', sans-serif;
+}
+/*       R E S E T S       */
+
+a:link, a:visited{
+	text-decoration: none;
+	color: #000;	
+}
+a:hover{
+
+}
+
+
+/*       H E A D E R       */ 
+
+#top{
+	background-color: #f0695e;
+	height: 56px;
+}
+#logo{
+	margin-left: 30px;
+	display: inline-block;
+}
+#search_button{
+	font: 13px sans-serif;
+	background-color: #f27e74;
+	width: 168px;
+	height: 28px;
+	border: 0px;
+	color: white;
+}
+#search_button :focus{
+	outline: none;
+}
+#line{
+	border-left: solid 2px #ebeff2;
+}
+nav{
+	float: right;
+	margin-top: 15px;
+	margin-right: 46px;
+	display: inline-block;
+}
+nav li {
+	font-size: 17px;
+	list-style-type: none;
+    display: inline;
+    margin: 45px;
+	color: #f27e74
+}
+
+/* A S I D E */
+aside{
+	margin-top: 13px;
+	background-color: #2d404d;
+	width: 260px;
+	height: 600px;
+	float: left;
+}
+#clear{
+	clear: both;
+}
+.widget{
+	float: right;
+}
+
+/*      C O N T A I N E R    */
+#signin{
+
+}
+#register{
+
+}
