@@ -1,7 +1,7 @@
 <?php
 class ErrorController{
     public function indexAction(){
-        echo "some unknown error! please try again!";
+        echo "An unknown error occured!";
     }
 
     public function notFoundAction(){
@@ -9,6 +9,6 @@ class ErrorController{
     }
 
     public function urlErrorAction(){
-        echo "your URL is not valid!";
+        echo "This URL is not valid!";
     }
 }

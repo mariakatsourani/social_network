@@ -8,10 +8,36 @@
 	<body>
 
     <?php
-        $user = new UserController();
+        /*$user = new UserController();
         echo "here:";
         var_dump($db);
-        $user->registerAction($db);
+        $user->registerAction($db);*/
+
+    //$conn = $db->getConnection();
+
+    $data = [
+        'username' => 'mari',
+        'email' => 'maria@mail.com',
+        'password' => '1234567'
+    ];
+
+    $conditions = [
+        'where' => [
+            'username' => 'mari'
+            ],
+        'order_by' => [
+            'registration_date' => 'DESC'
+        ]
+    ];
+
+    //$db->insert('users', $data);
+    print_r($db->formatForUpdate($data));
+    //$db->query("SELECT username FROM users");
+    print_r($db->formatConditions($conditions));
+    //$db->update('users', $data, $conditions);
+    //$db->delete('users', $conditions);
+
+
     ?>
 
 

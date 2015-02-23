@@ -33,4 +33,8 @@ class UserController{
     public function rejectFriendRequestAction(){
         //todo maria
     }
+
+    public function setJoke(){
+
+    }
 }
