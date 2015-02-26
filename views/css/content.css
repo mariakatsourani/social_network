@@ -1,0 +1,45 @@
+/* ----------- C O N T A I N E R -------------*/
+
+#content{
+	
+}
+#forms{
+    width:100%;
+    margin-top: 5%;
+}
+.form_titles{
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+#login, #register{
+    width:48%;
+    display: inline-block;
+}
+#login{
+    text-align: right;
+    float:left;
+}
+#register{
+    float:right;
+}
+/* li styles */
+#forms li{
+    margin: 2% 0%;
+    list-style-type: none;
+}
+input{
+    width: 50%;
+    padding: 5px;
+    margin: 1% 0%;
+    height:25px;
+    border-radius: 3px;
+    border: solid 1px #C0C0C0 ;
+}
+input[type="submit"]{
+    width: 52%;
+    height:30px;
+}
+input[type="text"], input[type="password"]{
+
+}

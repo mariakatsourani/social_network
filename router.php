@@ -6,14 +6,11 @@ require_once './controllers/usercontroller.php';
 require_once './models/databasemodel.php';
 
 //$db = DatabaseModel::getInstance();
-/*spl_autoload_register( function($class) {
-    if (is_file('/controllers/' . strtolower($class) . '.php')) {
-        require_once('/controllers/' . strtolower($class) . '.php');
-    }
-    else if (is_file('/models/' . strtolower($class) . '.php')) {
-        require_once('/models/' . strtolower($class) . '.php');
-    }
-});*/
+
+
+/*function __autoload($class) {
+    require_once "./controllers/" . strtolower($class) . ".php";
+}*/
 
 /*
 //assuming we start with: http://asd.com/user/Wesam/?test=1
@@ -65,5 +62,6 @@ else{
     $cont = new ErrorController;
     $cont->notFoundAction();
 }
+
 
 

@@ -42,25 +42,25 @@ class DatabaseModel {
                 }
             }
         }
-
+    echo $fields;
         return $fields;
     }
 
     public function formatValues($data){
-    $values= '(';
-    end($data); // move the internal pointer to the end of the array
-    $lastElement = key($data); // fetches the key of the element pointed to by the internal pointer
+        $values= '(';
+        end($data); // move the internal pointer to the end of the array
+        $lastElement = key($data); // fetches the key of the element pointed to by the internal pointer
 
-    foreach($data as $key => $value){
-        $values .= "'" . $value . "'";
-        if ($key != $lastElement){
-            $values .= ", ";
-        }else{
-            $values .= ")";
+        foreach($data as $key => $value){
+            $values .= "'" . $value . "'";
+            if ($key != $lastElement){
+                $values .= ", ";
+            }else{
+                $values .= ")";
+            }
         }
+        return $values;
     }
-    return $values;
-}
 
     public function formatForUpdate($data){
         $fieldsValues= '';
@@ -79,30 +79,17 @@ class DatabaseModel {
     }
 
     public function formatConditions($data){
-        //todo
-        //where
-        if(isset($data['where'])){
-            $conditions = ' WHERE ';
-
-            end($data['where']);
-            $lastElement = key($data['where']);
-
-            foreach($data['where'] as $field => $value){
+        $conditions = '';
+            end($data);
+            $lastElement = key($data);
+            foreach($data as $field => $value){
                 $conditions .= $field . "='" . $value . "'";
                 if ($field != $lastElement){
                     $conditions .= " AND ";
                 }
             }
-        }
-        //order by
-        if(isset($data['order_by'])){
-
-        }
-        //limit
-        if(isset($data['limit'])){
-
-        }
-
+        //var_dump($conditions);
+        //echo $conditions;
         return $conditions;
     }
 
@@ -119,15 +106,19 @@ class DatabaseModel {
     public function insert($table, $data){
         $fields = $this->formatFields($data);
         $values = $this->formatValues($data);
+        //echo "INSERT INTO" .  $table . " (" . $fields .")VALUES " . $values;
         $insertStm = $this->_connection->prepare("INSERT INTO $table ($fields) VALUES $values");
         $this->checkStmSuccess($insertStm);
     }
 
-    public function query($sqlQuery){
-        $queryStm = $this->_connection->prepare($sqlQuery);
+    public function query_where($table, $conditions){
+        $whereClause = $this->formatConditions($conditions);
+        //echo "SELECT * FROM" . $table . "WHERE" . $whereClause;
+        $queryStm = $this->_connection->prepare("SELECT * FROM $table WHERE $whereClause");
         $this->checkStmSuccess($queryStm);
-        $result = $queryStm->fetchAll();
+        $result = $queryStm->fetchAll(PDO::FETCH_ASSOC);
         var_dump($result);
+        return $result[0];
     }
 
     public function update($table, $data, $conditions){

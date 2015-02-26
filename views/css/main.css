@@ -3,8 +3,8 @@
 	padding: 0px;
 }
 *::-webkit-input-placeholder {
-    color: white;
-    opacity: 0.8;
+    color: black;
+    opacity: 0.3;
 }
 body{
 	background-color: #ebeff2;
@@ -14,7 +14,7 @@ body{
 
 a:link, a:visited{
 	text-decoration: none;
-	color: #000;	
+	color: #2d404d;
 }
 a:hover{
 
@@ -28,16 +28,22 @@ a:hover{
 	height: 56px;
 }
 #logo{
-	margin-left: 30px;
+    float:left;
+    width:10%;
+    height: 56px;
 	display: inline-block;
+}
+#logo img{
+    width: 100%;
+    height:100%;
 }
 #search_button{
 	font: 13px sans-serif;
-	background-color: #f27e74;
+	background-color: #f2a393;
 	width: 168px;
 	height: 28px;
 	border: 0px;
-	color: white;
+	color: #1b1b1b;
 }
 #search_button :focus{
 	outline: none;
@@ -46,22 +52,21 @@ a:hover{
 	border-left: solid 2px #ebeff2;
 }
 nav{
+    width:70%;
 	float: right;
-	margin-top: 15px;
-	margin-right: 46px;
+    text-align: right;
 	display: inline-block;
 }
 nav li {
 	font-size: 17px;
 	list-style-type: none;
     display: inline;
-    margin: 45px;
+    margin: 0% 2%;
 	color: #f27e74
 }
 
 /* A S I D E */
 aside{
-	margin-top: 13px;
 	background-color: #2d404d;
 	width: 260px;
 	height: 600px;
@@ -74,10 +79,3 @@ aside{
 	float: right;
 }
 
-/*      C O N T A I N E R    */
-#signin{
-
-}
-#register{
-
-}
