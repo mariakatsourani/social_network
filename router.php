@@ -3,24 +3,13 @@
 require_once './controllers/errorcontroller.php';
 require_once './controllers/startcontroller.php';
 require_once './controllers/usercontroller.php';
+require_once './controllers/validationcontroller.php';
 require_once './models/databasemodel.php';
 
 session_start();
-//$db = DatabaseModel::getInstance();
-
-
 /*function __autoload($class) {
     require_once "./controllers/" . strtolower($class) . ".php";
 }*/
-
-/*
-//assuming we start with: http://asd.com/user/Wesam/?test=1
-$uri = $_SERVER["REQUEST_URI"]; //user/Wesam/?test=1
-$uri = strtolower($uri);        //user/wesam/?test=1
-$uri = parse_url($uri, PHP_URL_PATH); //user/wesam/
-$uri = rtrim($uri, "/");        //user/wesam
-$uri = explode("/", $uri); // [user,wesam]
-*/
 
 $uri = explode("/", parse_url(rtrim(strtolower($_SERVER["REQUEST_URI"]), "/"), PHP_URL_PATH));
 $script = explode("/", rtrim(strtolower($_SERVER["SCRIPT_NAME"]), "/")); //This line contains an array of splitted router URI
@@ -30,14 +19,13 @@ for ($i = 0; $i < sizeof($script); $i++) {
     if ((isset($uri[$i])) && ($uri[$i] == $script[$i]))
         unset($uri[$i]);
 }
-
+global $path;
 $path = array_values($uri); //create new array for the values that starts from 0
 
 
 //start by giving a default controller
 $defaultController = "startController";
 $defaultAction = "indexAction";
-
 
 //override the defaults base on the user's URI choice
 if(count($path) == 1){

@@ -1,11 +1,7 @@
-/* ----------- C O N T A I N E R -------------*/
-
-#content{
-	
-}
+/* ----------- F O R M S -------------*/
 #forms{
     width:100%;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 .form_titles{
     font-size: 17px;
@@ -30,7 +26,7 @@
 }
 input{
     width: 50%;
-    padding: 5px;
+    padding: 5px 10px;
     margin: 1% 0%;
     height:25px;
     border-radius: 3px;
@@ -42,4 +38,11 @@ input[type="submit"]{
 }
 input[type="text"], input[type="password"]{
 
+}
+
+/* ----------- E R R O R S -------------*/
+#errors{
+    margin-top:3%;
+    width: 100%;
+    text-align: center;
 }

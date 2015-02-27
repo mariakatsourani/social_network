@@ -72,7 +72,17 @@ aside{
 	height: 600px;
 	float: left;
 }
-#clear{
+aside li{
+    padding: 5% 3%;
+    border-bottom: solid #67757e 1px;
+}
+.side_links a:link, .side_links a:visited, .side_links a:active{
+    color:#ebeff2;
+}
+.side_links a:hover{
+
+}
+.clear{
 	clear: both;
 }
 .widget{

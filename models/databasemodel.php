@@ -82,7 +82,7 @@ class DatabaseModel {
         return $fieldsValues;
     }
 
-    function isAssoc($arr)
+    public function isAssoc($arr)
     {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
@@ -104,10 +104,10 @@ class DatabaseModel {
 
     public function checkStmSuccess($stm){
         if($stm->execute()){
-            echo "Successfully executed.";
+            //echo "Successfully executed.";
             return true;
         }else{
-            echo "Execution failed.";
+            //echo "Execution failed.";
             return false;
         }
     }
