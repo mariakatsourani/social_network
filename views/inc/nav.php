@@ -4,6 +4,6 @@
         <li><a href="wall.php">Wall</a></li>
         <li><a href="account.php">Account</a></li>
         <li><span id="line"></span></li>
-        <li><a href="index.php">log out</a></li>
+        <li><a href="logout">log out</a></li>
     </ul>
 </nav>

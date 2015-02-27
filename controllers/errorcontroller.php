@@ -5,7 +5,7 @@ class ErrorController{
     }
 
     public function notFoundAction(){
-        require_once "./views/404.html";
+        require_once "./views/404.php";
     }
 
     public function urlErrorAction(){

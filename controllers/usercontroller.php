@@ -5,6 +5,10 @@ class UserController{
         require_once "./views/index.php";
     }
 
+    public function accountAction(){
+        require_once './views/account.php';
+    }
+
     public function registerAction(){
         $db = DatabaseModel::getInstance();
         $data = array(
@@ -17,52 +21,21 @@ class UserController{
 
     public function loginAction(){
         $db = DatabaseModel::getInstance();
-        $whereClause = array(
-            "username" => $_POST['username']
-        );
-        //
-        $user_details = $db->query_where('users', $whereClause);
-       // echo $user_details['password'];
-        if ( password_verify($_POST['password'], $user_details['password']) ) {
-            $_SESSION['status'] = "logged_in";
-            $_SESSION['user_id'] = $user_details['user_id'];
-            var_dump($_SESSION);
-            echo "<a href='account'>Account</a>";
-            if(isset($_SESSION['status'])){
-                echo "log out";
+        $fields = array('user_id', 'password');
+        $whereClause = array('username' => $_POST['username']);
+        $result = $db->query_where('users', $fields, $whereClause);
+        if (count($result) == 1){//if we only get 1 result from db then user exists
+            $user_details = $result[0];//the result array contains an array with fields retrieved from db
+            if ( password_verify($_POST['password'], $user_details['password']) ) {
+                //session_start();
+                $_SESSION['status'] = "logged_in";
+                $_SESSION['user_id'] = $user_details['user_id'];
+                var_dump($_SESSION);
+                echo "<a href='account'>Account</a>";
+            }else{
+                echo "wrong password";
             }
-        }else{
-            echo "wrong password";
         }
-
-        //$getPasswordStm = $db->prepare("SELECT password FROM users WHERE username = :username");
-
-        /*if($getPasswordStm->execute()){
-            if($getPasswordStm->rowCount() == 1){
-                $stored_password = $getPasswordStm->fetchColumn(0);
-                if ( password_verify($password, $stored_password) ){
-                    $loginStm = $db->prepare("SELECT user_id, username, password, user_role_id FROM users
-                              WHERE username = :username AND password = :password");
-                    $loginStm->bindParam(':username' , $username , PDO:: PARAM_STR);
-                    $loginStm->bindParam(':password' , $stored_password, PDO:: PARAM_STR);
-                    if($loginStm->execute()){
-                        if($loginStm->rowCount() == 1){
-                            $_SESSION['status'] = "loggedin";
-                            $_SESSION['user_id'] = $loginStm->fetchColumn(0);
-                            //$_SESSION['username'] = $username;
-                            //$_SESSION['user_role'] = $loginStm->fetchColumn(3);// 3 is the index of field in the statement
-                            $_SESSION['user_role'] = get_privileges($_SESSION['user_id'], $db);
-                            $_SESSION['username'] = get_username($_SESSION['user_id'], $db);
-                            return true;
-                        }else{ return false; }
-                    }else{ echo "Login query execution failed!"; }
-                }
-            }
-        }else{ echo "Password match query execution failed!"; }*/
-    }
-
-    public function accountAction(){
-        include './views/account.php';
     }
 
     public function logoutAction(){

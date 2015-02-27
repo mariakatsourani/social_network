@@ -1,4 +1,4 @@
-<?php $pageTitle = "Profile" ?>
+<?php $pageTitle = "Your Wall" ?>
 
 <?php include 'inc/overall/header.php' ?>
 

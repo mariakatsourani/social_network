@@ -1,6 +1,8 @@
-<?php $pageTitle = "Account settings" ?>
+<?php $pageTitle = "Account settings";
+include 'inc/overall/header.php';
 
-<?php include 'inc/overall/header.php' ?>
+
+?>
 
 
 

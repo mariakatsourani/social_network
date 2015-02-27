@@ -5,6 +5,7 @@ require_once './controllers/startcontroller.php';
 require_once './controllers/usercontroller.php';
 require_once './models/databasemodel.php';
 
+session_start();
 //$db = DatabaseModel::getInstance();
 
 

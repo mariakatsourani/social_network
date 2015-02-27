@@ -1,46 +1,12 @@
 <!doctype html>
 <html>
-	<?php //include 'inc/head.php' ?>
-            <head>
-                <title><?php echo $pageTitle ?></title>
-                <link rel="stylesheet" type="text/css" href="views/css/main.css">
-                <link rel="stylesheet" type="text/css" href="views/css/content.css">
-                <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-            </head>
-
+	<?php include($_SERVER['DOCUMENT_ROOT']."/social_network-stergiosbranch/views/inc/head.php"); ?>
 
 	<body>
-        <?php
-            //$user = new UserController();
-            //echo "here:";
-           // var_dump($db);
-           //$user->registerAction($db);
-        ?>
-            <?php //include 'inc/header.php' ?>
-                    <header>
-            <div id="top">
-                <div id="logo">
-                    <img src="views/img/joke.png"/>
-                </div>
+        <?php include($_SERVER['DOCUMENT_ROOT']."/social_network-stergiosbranch/views/inc/header.php"); ?>
+            <div id="container">
 
-                <?php
-                ?>
-                <nav>
-                    <ul>
-                        <li><input type="text" id="search_button"  placeholder=" Search more jokes..."/></li>
-                        <li><a href="wall.php">Wall</a></li>
-                        <li><a href="account.php">Account</a></li>
-                        <li><span id="line"></span></li>
-                        <li><a href="index.php">log out</a></li>
-                    </ul>
-                </nav>
-
-            </div>
-            <div id="clear"></div>
-        </header>
-
-                    <div id="container">
-            <?php //include 'inc/aside.php' ?>
+                <?php //include($_SERVER['DOCUMENT_ROOT']."/social_network-stergiosbranch/views/inc/aside.php"); ?>
                     <!--<aside>
                         <ul>
                             <li></li>
@@ -50,4 +16,4 @@
                         </ul>
                     </aside>-->
 
-                        <div class="content">
+                    <div class="content">

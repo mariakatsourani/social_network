@@ -1,18 +1,17 @@
 <header>
 	<div id="top">
 		<div id="logo">
-			<h3><a href="index.php">joke it</a></h3>
+			<img src="/img/joke.png" />
 		</div>
-		
-		<nav>
-			<ul>
-				<li><input type="text" id="search_button"  placeholder=" Search more jokes..."/></li>
-				<li><a href="dashboard.php">Dashboard</a></li>
-				<li><a href="account.php">Account</a></li>
-				<li><span id="line"></span></li>
-				<li><a href="signIn.php">log out</a></li>
-			</ul>
-		</nav>
+
+        <?php
+        if( (isset($_SESSION['status'])) && ($_SESSION['status'] == "logged_in")) {
+            include 'nav.php';
+        }else{
+            echo "login plz";
+        }
+        ?>
+
 	</div>
 		<div id="clear"></div>
 </header>

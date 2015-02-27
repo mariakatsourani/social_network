@@ -7,13 +7,11 @@ class DatabaseModel {
         $dsn = 'mysql:dbname=social_network;host=127.0.0.1';
         $user = 'root';
         $password = '';
-
         try {
             $this->_connection = new PDO($dsn, $user, $password);
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
-
     }
 
     public static function getInstance(){
@@ -28,21 +26,27 @@ class DatabaseModel {
     }
 
     public function formatFields($data){
+        $fields = '';
+        end($data); // move the internal pointer to the end of the array
+        $lastElement = key($data); // fetches the key of the element pointed to by the internal pointer
+
         if ($data == "*"){
             $fields = "*";
-        }else{
-            $fields= '';
-            end($data); // move the internal pointer to the end of the array
-            $lastElement = key($data); // fetches the key of the element pointed to by the internal pointer
-
+        }else if ($this->isAssoc($data)){
             foreach($data as $key => $value){
                 $fields .= $key;
                 if ($key != $lastElement){
                     $fields .= ", ";
                 }
             }
+        }else{
+            foreach($data as $key => $value){
+                $fields .= $value;
+                if ($key != $lastElement){
+                    $fields .= ", ";
+                }
+            }
         }
-    echo $fields;
         return $fields;
     }
 
@@ -78,6 +82,11 @@ class DatabaseModel {
         return $fieldsValues;
     }
 
+    function isAssoc($arr)
+    {
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
+
     public function formatConditions($data){
         $conditions = '';
             end($data);
@@ -111,35 +120,28 @@ class DatabaseModel {
         $this->checkStmSuccess($insertStm);
     }
 
-    public function query_where($table, $conditions){
+    public function query_where($table, $fields, $conditions){
+        $fields = $this->formatFields($fields);
         $whereClause = $this->formatConditions($conditions);
-        //echo "SELECT * FROM" . $table . "WHERE" . $whereClause;
-        $queryStm = $this->_connection->prepare("SELECT * FROM $table WHERE $whereClause");
+        //echo "SELECT " . $fields . " FROM " . $table . " WHERE " . $whereClause;
+        $queryStm = $this->_connection->prepare("SELECT $fields FROM $table WHERE $whereClause");
         $this->checkStmSuccess($queryStm);
         $result = $queryStm->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($result);
-        return $result[0];
+        //var_dump($result);
+        return $result;
     }
 
-    public function update($table, $data, $conditions){
+    public function update($table, $data, $conditions){//todo
         $fieldsValues = $this->formatForUpdate($data);
         $conditions = $this->formatConditions($conditions);
         $updateStm = $this->_connection->prepare("UPDATE $table SET $fieldsValues $conditions");
         $this->checkStmSuccess($updateStm);
     }
 
-    public function delete($table, $conditions){
+    public function delete($table, $conditions){//todo
         $conditions = $this->formatConditions($conditions);
         $deleteStm = $this->_connection->prepare("DELETE FROM $table $conditions");
         $this->checkStmSuccess($deleteStm);
     }
-
-    public function getAllUsers(){
-        $stm = $this->_connection->prepare("SELECT * FROM users");
-        $stm->execute();
-        $result = $stm->fetchAll();
-        var_dump($result);
-    }
-
 
 }

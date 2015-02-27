@@ -5,6 +5,6 @@ class StartController{
     public function indexAction(){
         $db = DatabaseModel::getInstance();
         require_once "./views/index.php";
-        session_start();
+        //session_start();
     }
 }

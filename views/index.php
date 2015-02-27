@@ -1,9 +1,6 @@
-<?php $pageTitle = "Social Network Joke it" ?>
+<?php $pageTitle = "THIS IS a joke";
+      include 'inc/overall/header.php';
 
-<?php include 'inc/overall/header.php';
-    if(isset($_SESSION['status'])){
-        echo "log out";
-    }
 ?>
 
 <div id="forms">
