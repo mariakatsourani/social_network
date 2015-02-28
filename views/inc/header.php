@@ -1,7 +1,7 @@
 <header>
 	<div id="top">
 		<div id="logo">
-			<img src="/social_network-stergiosbranch/views/img/joke.png" />
+			<img src="/social_network/views/img/joke.png" />
 		</div>
 
         <?php

@@ -87,14 +87,19 @@ class DatabaseModel {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 
-    public function formatConditions($data){
+    public function formatConditions($data, $andOr){
         $conditions = '';
             end($data);
             $lastElement = key($data);
             foreach($data as $field => $value){
                 $conditions .= $field . "='" . $value . "'";
                 if ($field != $lastElement){
-                    $conditions .= " AND ";
+                    if ($andOr == 'AND'){
+                        $conditions .= " AND ";
+                    }elseif($andOr == 'OR'){
+                        $conditions .= " OR ";
+                    }
+
                 }
             }
         //var_dump($conditions);
@@ -104,10 +109,10 @@ class DatabaseModel {
 
     public function checkStmSuccess($stm){
         if($stm->execute()){
-            //echo "Successfully executed.";
+            echo "Successfully executed.";
             return true;
         }else{
-            //echo "Execution failed.";
+            echo "Execution failed.";
             return false;
         }
     }
@@ -115,14 +120,14 @@ class DatabaseModel {
     public function insert($table, $data){
         $fields = $this->formatFields($data);
         $values = $this->formatValues($data);
-        //echo "INSERT INTO" .  $table . " (" . $fields .")VALUES " . $values;
+        echo "INSERT INTO " .  $table . " (" . $fields .") VALUES " . $values;
         $insertStm = $this->_connection->prepare("INSERT INTO $table ($fields) VALUES $values");
         $this->checkStmSuccess($insertStm);
     }
 
-    public function query_where($table, $fields, $conditions){
+    public function query_where($table, $fields, $conditions, $andOr){
         $fields = $this->formatFields($fields);
-        $whereClause = $this->formatConditions($conditions);
+        $whereClause = $this->formatConditions($conditions, $andOr);
         //echo "SELECT " . $fields . " FROM " . $table . " WHERE " . $whereClause;
         $queryStm = $this->_connection->prepare("SELECT $fields FROM $table WHERE $whereClause");
         $this->checkStmSuccess($queryStm);
@@ -133,13 +138,13 @@ class DatabaseModel {
 
     public function update($table, $data, $conditions){//todo
         $fieldsValues = $this->formatForUpdate($data);
-        $conditions = $this->formatConditions($conditions);
+        $conditions = $this->formatConditions($conditions, 'AND');
         $updateStm = $this->_connection->prepare("UPDATE $table SET $fieldsValues $conditions");
         $this->checkStmSuccess($updateStm);
     }
 
     public function delete($table, $conditions){//todo
-        $conditions = $this->formatConditions($conditions);
+        $conditions = $this->formatConditions($conditions, 'AND');
         $deleteStm = $this->_connection->prepare("DELETE FROM $table $conditions");
         $this->checkStmSuccess($deleteStm);
     }
