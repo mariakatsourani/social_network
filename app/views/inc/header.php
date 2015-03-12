@@ -8,7 +8,7 @@
         if( (isset($_SESSION['status'])) && ($_SESSION['status'] == "logged_in")) {
             include 'nav.php';
         }
-        $db = DatabaseModel::getInstance();
+
         ?>
 
 	</div>

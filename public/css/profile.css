@@ -1,0 +1,72 @@
+/* P R O F I L E */
+#profile{
+    float:left;
+    width:75%;
+    margin: 3%;
+}
+#profile_info{
+    width:50%;
+    display: inline-block;
+ }
+#profile_pic{
+    width:28%;
+    height:150px;
+    float: left;
+}
+#profile_pic img{
+    width: 100%;
+    height:100%;
+}
+.details{
+     margin: 3% 2%;
+ }
+#profile_joke{
+    margin-top: 20%;
+    text-align: justify;
+}
+
+/* R E L A T I O N S H I P */
+#relationship{
+    vertical-align: top;
+    margin: 3% 2%;
+    display: inline-block;
+    width:20%;
+}
+#relationship ul li{
+    height:35px;
+    width: 200px;
+    margin: 5% 0%;
+    padding-top: 9px;
+    border-radius: 3px;
+    background-color: #2d404d;
+    text-align: center;
+}
+#relationship ul li a{
+    color:#ebeff2;
+    vertical-align: middle;
+}
+
+/* W A L L */
+#wall{
+    width:50%;
+    display:inline-block;
+    margin: 3%;
+}
+.friends_status{
+    margin-bottom: 5%;
+}
+.user_pic_small{
+    display: inline-block;
+}
+.username{
+    display: inline-block;
+    margin-left: 1%;
+    font-weight: 700;
+}
+.user_pic_small img{
+    width:48px;
+    height:50px;
+}
+.joke{
+    margin-top: 1%;
+}

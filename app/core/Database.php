@@ -1,5 +1,5 @@
 <?php
-class DatabaseModel {
+class Database {
     private $_connection;
     private static $_instance;
 
@@ -89,30 +89,33 @@ class DatabaseModel {
 
     public function formatConditions($data, $andOr){
         $conditions = '';
-            end($data);
-            $lastElement = key($data);
-            foreach($data as $field => $value){
-                $conditions .= $field . "='" . $value . "'";
-                if ($field != $lastElement){
-                    if ($andOr == 'AND'){
-                        $conditions .= " AND ";
-                    }elseif($andOr == 'OR'){
-                        $conditions .= " OR ";
-                    }
-
+        end($data);
+        $lastElement = key($data);
+        foreach($data as $field => $value){
+            $conditions .= $field . "='" . $value . "'";
+            if ($field != $lastElement){
+                if ($andOr == 'AND'){
+                    $conditions .= " AND ";
+                }elseif($andOr == 'OR'){
+                    $conditions .= " OR ";
                 }
+
             }
+        }
         //var_dump($conditions);
         //echo $conditions;
         return $conditions;
     }
 
     public function checkStmSuccess($stm){
+
+        //echo "<br> execute ";
+        //var_dump($stm);
         if($stm->execute()){
-            echo "Successfully executed.";
+            //echo "Successfully executed.";
             return true;
         }else{
-            echo "Execution failed.";
+            //echo "Execution failed.";
             return false;
         }
     }
@@ -120,7 +123,7 @@ class DatabaseModel {
     public function insert($table, $data){
         $fields = $this->formatFields($data);
         $values = $this->formatValues($data);
-        echo "INSERT INTO " .  $table . " (" . $fields .") VALUES " . $values;
+        //echo "INSERT INTO " .  $table . " (" . $fields .") VALUES " . $values;
         $insertStm = $this->_connection->prepare("INSERT INTO $table ($fields) VALUES $values");
         $this->checkStmSuccess($insertStm);
     }
@@ -130,6 +133,17 @@ class DatabaseModel {
         $whereClause = $this->formatConditions($conditions, $andOr);
         //echo "SELECT " . $fields . " FROM " . $table . " WHERE " . $whereClause;
         $queryStm = $this->_connection->prepare("SELECT $fields FROM $table WHERE $whereClause");
+        $this->checkStmSuccess($queryStm);
+        $result = $queryStm->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($result);
+        return $result;
+    }
+
+    public function query_sql($sql, $params){
+        $queryStm = $this->_connection->prepare($sql);
+        foreach($params as $key => &$value){ //pass $value as a reference to the array item
+            $queryStm->bindParam($key, $value);
+        }
         $this->checkStmSuccess($queryStm);
         $result = $queryStm->fetchAll(PDO::FETCH_ASSOC);
         //var_dump($result);

@@ -20,6 +20,14 @@ a:hover{
 
 }
 
+ul{
+    list-style:none;
+}
+
+.not-active{
+    pointer-events: none;
+    cursor: default;
+}
 
 /*       H E A D E R       */ 
 
@@ -68,7 +76,7 @@ nav li {
 /* A S I D E */
 aside{
 	background-color: #2d404d;
-	width: 260px;
+	width: 17%;
 	height: 600px;
 	float: left;
 }

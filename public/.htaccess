@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteBase /mvc_app/public
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#Passing the url as a GET variable
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
