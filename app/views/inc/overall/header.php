@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
-	<?php include $_SERVER['DOCUMENT_ROOT'].'mvc_app/app/views/inc/head.php'; ?>
+	<?php include dirname(__FILE__) . '/../head.php'; ?>
 
 	<body>
-        <?php include $_SERVER['DOCUMENT_ROOT'].'mvc_app/app/views/inc/header.php'; ?>
+        <?php include dirname(__FILE__) . '/../header.php'; ?>
             <div id="container">
                 <div class="content">

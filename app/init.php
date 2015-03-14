@@ -8,6 +8,7 @@ require_once 'core/Database.php';
 
 require_once '/controllers/friendship.php';
 require_once '/controllers/user.php';
+require_once '/controllers/error.php';
 
 
 session_start();

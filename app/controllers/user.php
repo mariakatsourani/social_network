@@ -76,8 +76,8 @@ class User extends Controller{
         //$data = $result ? $result[0] : [];
         //return $result[0];
 
-        /*$data = [
-             'username'             => $username,
+            /*$data = [
+                 'username'             => $username,
              'email'                => '',
              'joke'                 => '',
              'registration_date'    => '' ];*/
@@ -102,7 +102,7 @@ class User extends Controller{
         $db = Database::getInstance();
         $result = $db->query_where('users', ['user_id'], ['username' => $username], 'AND');
         if($result){
-            return $result[0];
+            return $result[0]['user_id'];
         }
     }
 

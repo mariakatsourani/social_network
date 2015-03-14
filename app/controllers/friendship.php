@@ -52,19 +52,49 @@ class Friendship extends Controller{
 
     }
 
-    public function add(){
+    public function add($username = ''){
+        $db = Database::getInstance();
+
+        $user = new User();
+        $profile_id = $user->getUserid($username);
+
+        $sql = "SELECT NULL from friendships WHERE (requested_by =:logged_in and received_by =:profile_id )
+                OR (requested_by =:profile_id2 and received_by =:logged_in2 )";
+        $params = [
+            'logged_in' => $_SESSION['user_id'],
+            'profile_id' => $profile_id,
+            'profile_id2' => $profile_id,
+            'logged_in2' => $_SESSION['user_id']
+        ];
+        $result = $db->query_sql($sql, $params);
+        //var_dump($result);
+
+        if($result){
+            echo "friendship exists. Cannot add friend.";
+        }else if($profile_id == $_SESSION['user_id']){
+            $error = new Error();
+            $error->index();
+        }//else if username does not exist
+        else{
+            //
+            $data = [
+                'requested_by' => $_SESSION['user_id'],
+                'received_by' => $profile_id
+            ];
+            $db->insert('friendships', $data);
+        }
 
     }
 
-    public function accept(){
+    public function accept($username = ''){
 
     }
 
-    public function decline(){
-
+    public function decline($username = ''){
+        //$this->delete();
     }
 
-    public function delete(){
+    public function delete($username = ''){
         echo "ARE YOU SURE YOU WANT TO DELETE YOUR FRIEND?";
     }
 
