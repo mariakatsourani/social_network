@@ -7,6 +7,7 @@ class App{
     protected $params = []; //if any params stored here
 
     public function __construct(){
+
         $url = $this->parseUrl();
 
         //does the controller file exist

@@ -21,8 +21,11 @@ include 'inc/aside.php';
         <div class="details"><?php echo $data['email']; ?></div>
         <div class="details">Member since: <?php echo $data['registration_date']; ?></div>
 
-        <div class="details" id="profile_joke">
-        <?php echo $data['joke']; ?>
+        <div class="details">
+            <form id="edit_joke" method="post" action="http://localhost/mvc_app/public/user/edit/">
+                <textarea name="new_joke"> <?php echo $data['joke']; ?> </textarea>
+                <input type="submit" name="edit" value="Save" />
+            </form>
     </div>
 
     </div>

@@ -90,6 +90,12 @@ aside li{
 .side_links a:hover{
 
 }
+.friends a:link, .friends a:visited, .friends a:active{
+    font-style: italic;
+}
+.friends a:hover{
+
+}
 .clear{
 	clear: both;
 }
@@ -97,3 +103,15 @@ aside li{
 	float: right;
 }
 
+/* S C R O L L  B A R */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 20px rgba(45,64,77,0.2);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+}

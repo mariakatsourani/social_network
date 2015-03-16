@@ -84,6 +84,17 @@ class User extends Controller{
         $this->view('profile', $data);
     }
 
+    public function edit(){
+        $db = Database::getInstance();
+        $sql = "UPDATE users SET joke =:new_joke
+                WHERE user_id =:logged_in";
+        $params = ['new_joke' => $_POST['new_joke'],
+                   'logged_in' => $_SESSION['user_id']
+        ];
+        $db->query_sql($sql, $params);
+        header('location:http://localhost/mvc_app/public/user/profile/');
+    }
+
     public function isLoggedin(){
         return (isset($_SESSION['status']) == 'logged_in') ? true : false;
     }

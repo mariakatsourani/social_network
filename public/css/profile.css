@@ -20,11 +20,18 @@
 .details{
      margin: 3% 2%;
  }
-#profile_joke{
-    margin-top: 20%;
+#edit_joke{
+
+}
+#edit_joke textarea{
+    width: 100%;
+    height:100px;
+    margin-top: 5%;
     text-align: justify;
 }
-
+#edit_joke input{
+    width:20%;
+}
 /* R E L A T I O N S H I P */
 #relationship{
     vertical-align: top;
@@ -68,5 +75,48 @@
     height:50px;
 }
 .joke{
+    text-align: justify;
     margin-top: 1%;
 }
+
+/* M E S S A G E S */
+#messages{
+    display: inline-block;
+    width:50%;
+    margin:3%;
+}
+#conversation{
+    overflow-y:scroll;
+    max-height: 400px;
+}
+.msg{
+    margin-bottom: 3%;
+}
+.msg_info{
+    margin: 1% 0%;
+}
+.sender{
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+.date_sent{
+    font-size: 80%;
+    font-style: italic;
+    display: inline-block;
+}
+.msg_content{
+
+}
+/* message form */
+#send_msg{
+    margin-top: 2%;
+}
+#send_msg input[type=text]{
+    width:80%;
+}
+#send_msg input[type=submit]{
+    width:10%;
+    height:37px;
+}
+

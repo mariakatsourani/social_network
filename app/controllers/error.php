@@ -11,6 +11,10 @@ class Error extends Controller{
         $this->errors[] = $newError;
     }
 
+    public function message(){
+        echo "Could not send message.";
+    }
+
     public function notLoggedin(){
         echo "Sorry you have to login to do that!";
     }

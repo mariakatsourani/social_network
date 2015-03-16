@@ -21,6 +21,7 @@ if($_SESSION['user_id'] != $data['user_id']){ //check if it is the logged in use
         if ($result['state'] == 1){
             if($result['requested_by'] == $data['user_id']){
                 echo "<li><a href='http://localhost/mvc_app/public/friendship/accept/" .$data['username'] . "'>Accept request</a></li>";
+                echo "<li><a href='http://localhost/mvc_app/public/friendship/delete/" .$data['username'] . "'>Decline request</a></li>";
             }else{
                 echo "<li><a href='' class='not-active'>Waiting for response</a></li>";
             }
@@ -32,7 +33,6 @@ if($_SESSION['user_id'] != $data['user_id']){ //check if it is the logged in use
 
     echo "</ul>";
 }
-
 ?>
 
 </div>
