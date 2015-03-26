@@ -27,7 +27,7 @@ if($_SESSION['user_id'] != $data['user_id']){ //check if it is the logged in use
             }
         }else if ($result['state'] == 2){
             echo "<li><a href='http://localhost/mvc_app/public/friendship/delete/" .$data['username'] . "'>Delete friend</a></li>";
-            echo "<li><a href='http://localhost/mvc_app/public/message/'>Send Message</a></li>";
+            echo "<li><a href='http://localhost/mvc_app/public/message/read/" .$data['username'] . "'>Send Message</a></li>";
         }
     }
 

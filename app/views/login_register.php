@@ -21,7 +21,7 @@ include 'inc/overall/header.php';
                 <ul>
                     <li class="form_titles">Register</li>
                     <li><input type="text" name="username" placeholder="Username" /></li>
-                    <li><input type="text" name="email" placeholder="Email" /></li>
+                    <li><input type="email" name="email" placeholder="Email" /></li>
                     <li><input type="password" name="password" placeholder="Password"/></li>
                     <li><input type="password" name="confirm_password" placeholder="Confirm Password"/></li>
                     <li><input type="submit" value="Register" name="submit"/></li>

@@ -28,13 +28,15 @@ class Friendship extends Controller{
             }
         }
         //get friend info
-        foreach($friend_ids as $key => $friend_id) {
-            $getJokes = "SELECT username, joke FROM users WHERE user_id = :friend_id";
-            $params = ['friend_id' => $friend_id];
-            $result = $db->query_sql($getJokes, $params);
-            $data[] = $result[0];
+        if(!empty($friend_ids)){
+            foreach($friend_ids as $key => $friend_id) {
+                $getJokes = "SELECT username, joke FROM users WHERE user_id = :friend_id";
+                $params = ['friend_id' => $friend_id];
+                $result = $db->query_sql($getJokes, $params);
+                $data[] = $result[0];
+            }
+            return $data;
         }
-        return $data;
     }
 
 
@@ -128,11 +130,25 @@ class Friendship extends Controller{
         $db = Database::getInstance();
         $result = $this->friendshipExists($username);
 
-        $sql = "DELETE FROM friendships
-                WHERE friendship_id =:fr_id";
-        $params = ['fr_id' => $result['friendship_id']];
+        $user = new User();
+        $profile_id = $user->getUserid($username);
 
-        $db->query_sql($sql, $params);
+        $delFriend = "DELETE FROM friendships WHERE friendship_id =:fr_id";
+        $params = ['fr_id' => $result['friendship_id']];
+        $db->query_sql($delFriend, $params);
+
+        //delete msgs
+        $delMsgs = "DELETE FROM messages
+                WHERE (sender_id =:fr_id AND receiver_id =:logged_in)
+                OR (sender_id =:logged_in2 AND receiver_id =:fr_id2)";
+        $params = [
+            'fr_id' => $profile_id,
+            'logged_in' => $_SESSION['user_id'],
+            'logged_in2' => $_SESSION['user_id'],
+            'fr_id2' => $profile_id
+        ];
+        $db->query_sql($delMsgs, $params);
+
         header('location:http://localhost/mvc_app/public/user/profile/' . $username);
     }
 
@@ -149,5 +165,23 @@ class Friendship extends Controller{
         ];
         $results = $db->query_sql($sql, $params);
         return $results;
+    }
+
+    public function toAccept(){
+        $db = Database::getInstance();
+        $user = new User();
+
+        $sql = "SELECT requested_by FROM friendships WHERE received_by =:logged_in AND state = 1";
+        $params = ['logged_in' => $_SESSION['user_id']];
+        $results = $db->query_sql($sql, $params);
+
+        if($results){
+            foreach ($results as $result){
+                foreach ($result as $user_id){
+                    $requests[] = $user->getUsername($user_id);
+                }
+            }
+            return $requests;
+        }
     }
 }
